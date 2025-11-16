@@ -1,0 +1,31 @@
+async function loadLeads() {
+  const res = await fetch("/api/leads");
+  const leads = await res.json();
+
+  const list = document.getElementById("lead-list");
+  list.innerHTML = "";
+
+  leads.forEach(lead => {
+    const div = document.createElement("div");
+    div.className = "lead";
+
+    const msg = `Hey ${lead.name}, this is Rocky — just got your request. Are you selling soon or just curious what your home might sell for?`;
+
+    div.innerHTML = `
+      <strong>${lead.name}</strong><br>
+      Phone: ${lead.phone}<br>
+      Email: ${lead.email}<br>
+      <button onclick="copyText('${msg.replace(/'/g, "\\'")}')">Copy Text to Message</button>
+    `;
+
+    list.appendChild(div);
+  });
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text);
+  alert("Copied! Now paste into Google Voice.");
+}
+
+loadLeads();
+setInterval(loadLeads, 5000);

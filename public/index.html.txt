@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini CRM</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>📋 Lead Dashboard</h1>
+
+  <div id="lead-list"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
